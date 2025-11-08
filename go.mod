@@ -1,4 +1,4 @@
-module github.com/tmc/keyring
+module github.com/alirezadesh/keyring
 
 go 1.18
 

@@ -10,7 +10,7 @@ type winProvider struct {
 }
 
 func (p *winProvider) Get(Service, Username string) (string, error) {
-	cred1, err := wincred.GetGenericCredential(Service)
+	cred1, err := wincred.GetGenericCredential(fmt.Sprintf("%s/%s", Service, Username))
 	if err == nil && cred1.UserName == Username {
 		return string(cred1.CredentialBlob), nil
 	}
@@ -19,7 +19,7 @@ func (p *winProvider) Get(Service, Username string) (string, error) {
 }
 
 func (p *winProvider) Set(Service, Username, Password string) error {
-	cred := wincred.NewGenericCredential(Service)
+	cred := wincred.NewGenericCredential(fmt.Sprintf("%s/%s", Service, Username))
 	cred.UserName = Username
 	cred.CredentialBlob = []byte(Password)
 	return cred.Write()

@@ -81,8 +81,8 @@ func (s *ssProvider) Get(c, u string) (string, error) {
 	results := []dbus.ObjectPath{}
 	var secret ssSecret
 	search := map[string]string{
-		"username": u,
-		"service":  c,
+		"account": u,
+		"service": c,
 	}
 
 	session, err := s.openSession()
@@ -115,10 +115,10 @@ func (s *ssProvider) Get(c, u string) (string, error) {
 func (s *ssProvider) Set(c, u, p string) error {
 	var item, prompt dbus.ObjectPath
 	properties := map[string]dbus.Variant{
-		"org.freedesktop.Secret.Item.Label": dbus.MakeVariant(fmt.Sprintf("%s - %s", u, c)),
+		"org.freedesktop.Secret.Item.Label": dbus.MakeVariant(fmt.Sprintf("%s/%s", c, u)),
 		"org.freedesktop.Secret.Item.Attributes": dbus.MakeVariant(map[string]string{
-			"username": u,
-			"service":  c,
+			"account": u,
+			"service": c,
 		}),
 	}
 

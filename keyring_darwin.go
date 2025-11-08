@@ -30,7 +30,7 @@ func unescape(raw string) string {
 
 func (p osxProvider) Get(Service, Username string) (string, error) {
 	args := []string{"find-generic-password",
-		"-s", Service,
+		"-s", fmt.Sprintf("%s/%s", Service, Username),
 		"-a", Username,
 		"-g"}
 	c := exec.Command("/usr/bin/security", args...)
@@ -52,7 +52,7 @@ func (p osxProvider) Get(Service, Username string) (string, error) {
 
 func (p osxProvider) Set(Service, Username, Password string) error {
 	args := []string{"add-generic-password",
-		"-s", Service,
+		"-s", fmt.Sprintf("%s/%s", Service, Username),
 		"-a", Username,
 		"-w", Password,
 		"-U"}

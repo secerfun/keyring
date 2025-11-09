@@ -1,8 +1,11 @@
+//go:build windows
 // +build windows
 
 package keyring
 
 import (
+	"fmt"
+
 	"github.com/danieljoos/wincred"
 )
 

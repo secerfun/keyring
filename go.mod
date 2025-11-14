@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/danieljoos/wincred v1.2.3
 	github.com/godbus/dbus/v5 v5.1.0
-	golang.org/x/crypto v0.35.0
+	golang.org/x/crypto v0.33.0
 )
 
 require (
